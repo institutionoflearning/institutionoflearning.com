@@ -23,6 +23,105 @@ section{padding:78px 22px}.wrap{max-width:1200px;margin:auto}.sectionHead{text-a
 footer{background:#211b1c;color:#d9cfca;padding:45px 22px}.foot{max-width:1200px;margin:auto;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}.foot b{color:white}.foot a:hover{color:white}
 .toast{position:fixed;right:20px;bottom:20px;background:#211b1c;color:white;padding:14px 17px;border-radius:13px;box-shadow:0 15px 40px rgba(0,0,0,.2);opacity:0;transform:translateY(12px);pointer-events:none;transition:.2s;z-index:100}.toast.show{opacity:1;transform:none}
 @media(max-width:900px){.trustStrip{grid-template-columns:repeat(2,1fr)}.navlinks{display:none}.menu{display:block}.hero{grid-template-columns:1fr}.features{grid-template-columns:repeat(2,1fr)}.courses,.tips,.reviews,.botWrap,.contact{grid-template-columns:1fr}}@media(max-width:560px){.trustStrip{grid-template-columns:1fr}.features{grid-template-columns:1fr}.nav{padding:10px 15px}.brand span{font-size:16px}.hero{padding-top:45px}.heroCard{min-height:360px}.sectionHead h2{font-size:36px}.hero h1{font-size:48px}}
+
+.studentToolbar{
+  display:flex;
+  justify-content:flex-end;
+  gap:10px;
+  margin-bottom:20px;
+  flex-wrap:wrap;
+}
+.childrenGrid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+.childCard{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:24px;
+  padding:24px;
+  box-shadow:0 8px 30px rgba(62,35,24,.06);
+}
+.childTop{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  margin-bottom:18px;
+}
+.childAvatar{
+  width:58px;
+  height:58px;
+  border-radius:18px;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(145deg,var(--red),#67131d);
+  color:#f8dfad;
+  font-family:Georgia,serif;
+  font-weight:900;
+  font-size:21px;
+}
+.childName{
+  margin:0;
+  font-family:Georgia,serif;
+  font-size:24px;
+}
+.childMeta{
+  margin:3px 0 0;
+  color:var(--muted);
+  font-size:13px;
+  font-weight:700;
+}
+.childStats{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin:15px 0;
+}
+.childStat{
+  padding:13px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:#fcfaf7;
+}
+.childStat b{
+  display:block;
+  color:var(--red);
+  font-size:20px;
+}
+.childStat span{
+  color:var(--muted);
+  font-size:12px;
+  font-weight:700;
+}
+.childMessage{
+  margin-top:14px;
+  padding:14px;
+  border-radius:14px;
+  background:#f8f2ea;
+  border:1px solid var(--line);
+  font-size:13px;
+}
+.childActions{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:16px;
+}
+.childActions .btn{
+  flex:1;
+  min-width:110px;
+}
+.childrenEmpty{
+  text-align:center;
+  padding:45px 25px;
+}
+@media(max-width:900px){
+  .childrenGrid{grid-template-columns:1fr}
+}
+.authActions{justify-content:flex-start}
+}
+
 </style>
 </head>
 <body>
@@ -30,7 +129,7 @@ footer{background:#211b1c;color:#d9cfca;padding:45px 22px}.foot{max-width:1200px
 <div class="nav">
 <a class="brand" href="#home"><span class="brandMark">IOL</span><span>Institution Of Learning</span></a>
 <nav class="navlinks">
-<a href="#home">Home</a><a href="#features">Features</a><a href="#courses">Courses</a><a href="#tests">Tests</a><a href="#tips">Tips</a><a href="#reviews">Reviews</a><a href="#contact">Contact</a>
+<a href="#home">Home</a><a href="#features">Features</a><a href="#courses">Courses</a><a href="#tests">Tests</a><a href="#tips">Tips</a><a href="#institution-ai">Institution AI</a><a href="#my-student">My Student</a><a href="#reviews">Reviews</a><a href="#contact">Contact</a>
 </nav>
 <button class="btn primary" onclick="location.hash='tests'">Join / Test</button>
 <button class="btn ghost menu" onclick="toggleMenu()">☰</button>
@@ -106,6 +205,31 @@ footer{background:#211b1c;color:#d9cfca;padding:45px 22px}.foot{max-width:1200px
 <div class="chat"><div class="chatHead">Institution AI • Online</div><div id="messages" class="messages"><div class="msg botmsg">Welcome! I’m Institution AI. Ask me about courses, placement tests, tips, pricing, certificates or contact information.</div></div><div class="chatInput"><input id="chatInput" placeholder="Ask Institution AI..." onkeydown="if(event.key==='Enter')sendChat()"><button class="btn primary" onclick="sendChat()">Send</button></div></div>
 </div></div></section>
 
+
+
+<section id="my-student" class="tools">
+<div class="wrap">
+
+<div class="sectionHead">
+<h2 id="childrenHeading">My Child</h2>
+<p>Manage your children's learning profiles, placement results, progress and Institute messages in one place.</p>
+</div><div class="studentToolbar">
+<button class="btn primary" onclick="addChild()">＋ Add Child</button>
+<button class="btn ghost" onclick="refreshChildren()">Refresh</button>
+</div>
+
+<div id="childrenGrid" class="childrenGrid"></div>
+
+<div id="childrenEmpty" class="card childrenEmpty" style="display:none">
+<div class="featureIcon">👨‍👩‍👧‍👦</div>
+<h3>Add your first child</h3>
+<p>Create a profile to keep learning information organized.</p>
+<button class="btn primary" onclick="addChild()">Add Child</button>
+</div>
+
+</div>
+</section>
+
 <section id="reviews"><div class="wrap">
 <div class="sectionHead"><h2>Student Reviews</h2><p>Read feedback and share your experience.</p></div>
 <div id="reviewsGrid" class="grid reviews"></div>
@@ -152,19 +276,233 @@ updateProgress();startTimer();
 function updateProgress(){const n=Object.keys(answers).length;const p=document.getElementById("progressBar");if(p)p.style.width=(n/25*100)+"%"}
 function startTimer(){clearInterval(timer);timer=setInterval(()=>{seconds--;const t=document.getElementById("timer");if(t)t.textContent=formatTime(seconds);if(seconds<=0){clearInterval(timer);submitTest(true)}},1000)}
 function formatTime(s){const h=Math.floor(s/3600),m=Math.floor(s%3600/60),x=s%60;return `${String(h).padStart(2,"0")}:${String(m).padStart(2,"0")}:${String(x).padStart(2,"0")}`}
-function submitTest(timeout=false){if(submitted)return;submitted=true;clearInterval(timer);let score=0;levels[selectedLevel].forEach((q,i)=>{if(answers[i]===q[4])score++});const pass=score===25;document.getElementById("result").innerHTML=`<div class="result"><div class="${pass?"passed":"failed"}">${pass?"PASSED":"NOT PASSED"} — ${score}/25</div><p>${timeout?"The time limit was reached. ":""}${pass?"Excellent. Your contact option is now unlocked.":"A perfect 25/25 is required to pass. Review the questions and try again."}</p>${pass?`<a class="btn primary" href="https://wa.me/201064608898" target="_blank" rel="noopener">Contact us on WhatsApp • +20 106 460 8898</a>`:`<button class="btn ghost" onclick="selectLevel('${selectedLevel}')">Retake Test</button>`}</div>`}
-function sendChat(){const input=document.getElementById("chatInput"),text=input.value.trim();if(!text)return;addMsg(text,true);input.value="";setTimeout(()=>addMsg(botReply(text),false),250)}
-function addMsg(text,user){const m=document.createElement("div");m.className="msg "+(user?"usermsg":"botmsg");m.textContent=text;document.getElementById("messages").appendChild(m);document.getElementById("messages").scrollTop=999999}
-function botReply(raw){const t=raw.toLowerCase();if(t.includes("price")||t.includes("cost"))return"Speaking is $350, Writing is $290, and Listening & Reading is $249.";if(t.includes("test")||t.includes("exam")||t.includes("placement"))return"We have Kids, A1, A2, B1, B2, C1 and C2 placement tests. Each has 25 questions, and 25/25 is required to pass.";if(t.includes("pass"))return"You need every answer correct: 25 out of 25. After passing, the WhatsApp contact option appears.";if(t.includes("tip"))return"Free tip: learn useful phrases in context, then use each phrase in your own sentence.";if(t.includes("course"))return"We offer Speaking Skills, Writing Skills, and Listening & Reading programs.";if(t.includes("whatsapp")||t.includes("contact"))return"You can contact Institution Of Learning on WhatsApp at +20 106 460 8898.";if(t.includes("certificate"))return"Certificates can be discussed with the institution after completing the appropriate learning program.";if(t.includes("hello")||t.includes("hi"))return"Hello! I’m Institution AI. What would you like to learn about?";return"I can help with courses, prices, placement tests, passing requirements, free tips, certificates and WhatsApp contact. Try asking one of those."}
-const initialReviews=[["Mariam A.","★★★★★","The placement test is clear and easy to use."],["Omar K.","★★★★★","I like the clean design and level-based questions."],["Sophia R.","★★★★☆","The learning tips are useful and practical."]];
+async function submitTest(timeout=false){if(submitted)return;submitted=true;clearInterval(timer);let score=0;levels[selectedLevel].forEach((q,i)=>{if(answers[i]===q[4])score++});const pass=score===25;localStorage.setItem("iolLatestTest",JSON.stringify({level:selectedLevel,score,date:new Date().toISOString()}));await updateChildFromTest(selectedLevel,score);loadStudent();document.getElementById("result").innerHTML=`<div class="result"><div class="${pass?"passed":"failed"}">${pass?"PASSED":"NOT PASSED"} — ${score}/25</div><p>${timeout?"The time limit was reached. ":""}${pass?"Excellent. Your contact option is now unlocked.":"A perfect 25/25 is required to pass. Review the questions and try again."}</p>${pass?`<a class="btn primary" href="https://wa.me/201064608898" target="_blank" rel="noopener">Contact us on WhatsApp • +20 106 460 8898</a>`:`<button class="btn ghost" onclick="selectLevel('${selectedLevel}')">Retake Test</button>`}</div>`}
+let aiHistory=[];
+function sendChat(){
+ const input=document.getElementById("chatInput");
+ const text=input.value.trim();
+ if(!text)return;
+ input.value="";
+ addMsg(text,true);
+ aiHistory.push({role:"user",content:text});
+ const loading=document.createElement("div");
+ loading.className="msg botmsg";
+ loading.textContent="Institution AI is thinking…";
+ document.getElementById("messages").appendChild(loading);
+ document.getElementById("messages").scrollTop=999999;
+ fetch("/api/chat",{
+   method:"POST",
+   headers:{"Content-Type":"application/json"},
+   body:JSON.stringify({messages:aiHistory})
+ }).then(async r=>{
+   const data=await r.json();
+   loading.remove();
+   if(!r.ok)throw new Error(data.error||"AI unavailable");
+   addMsg(data.reply,false);
+   aiHistory.push({role:"assistant",content:data.reply});
+   aiHistory=aiHistory.slice(-20);
+ }).catch(()=>{
+   loading.remove();
+   addMsg(botReply(text),false);
+ });
+}
+function addMsg(text,user){
+ const m=document.createElement("div");
+ m.className="msg "+(user?"usermsg":"botmsg");
+ m.textContent=text;
+ document.getElementById("messages").appendChild(m);
+ document.getElementById("messages").scrollTop=999999;
+}
+function botReply(raw){
+ const t=raw.toLowerCase();
+ if(t.includes("price")||t.includes("cost"))return"Speaking is $350, Writing is $290, and Listening & Reading is $249.";
+ if(t.includes("test")||t.includes("exam")||t.includes("placement"))return"We have Kids, A1, A2, B1, B2, C1 and C2 placement tests. Each has 25 questions, and 25/25 is required to pass.";
+ if(t.includes("pass"))return"You need every answer correct: 25 out of 25. After passing, the WhatsApp contact option appears.";
+ if(t.includes("tip"))return"Free tip: learn useful phrases in context, then use each phrase in your own sentence.";
+ if(t.includes("course"))return"We offer Speaking Skills, Writing Skills, and Listening & Reading programs.";
+ if(t.includes("whatsapp")||t.includes("contact"))return"You can contact Institution Of Learning on WhatsApp at +20 106 460 8898.";
+ if(t.includes("hello")||t.includes("hi"))return"Hello! I’m Institution AI. What would you like to learn about?";
+ return"I’m currently offline, but I can answer questions about courses, prices, placement tests, passing requirements, learning tips and contact information.";
+}
+
+
+const SUPABASE_PUBLISHABLE_KEY="sb_publishable_2C9wgqPameBehfXy7RhyxA_9C107Qr7";
+const supabaseConfigured=SUPABASE_URL.startsWith("https://") && !SUPABASE_URL.includes("YOUR_") && !SUPABASE_PUBLISHABLE_KEY.includes("YOUR_");
+const supabaseClient=supabaseConfigured
+  ? window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY,{auth:{autoRefreshToken:true,persistSession:true,detectSessionInUrl:true}})
+  : null;
+
+let currentUser=null;
+let authMode="local";
+
+function getLocalChildren(){
+  try{
+    const data=JSON.parse(localStorage.getItem("iolChildren")||"[]");
+    return Array.isArray(data)?data:[];
+  }catch(e){ return []; }
+}
+
+function saveLocalChildren(children){
+  localStorage.setItem("iolChildren",JSON.stringify(children));
+}
+
+function addChild(){
+  const name=prompt("Child's name:");
+  if(!name || !name.trim()) return;
+
+  const children=getLocalChildren();
+  const child={
+    id:Date.now().toString(36),
+    name:name.trim(),
+    level:"Not assessed",
+    score:null,
+    tests:0,
+    message:"Welcome to Institution Of Learning!",
+    created_at:new Date().toISOString()
+  };
+
+  children.push(child);
+  saveLocalChildren(children);
+  localStorage.setItem("iolActiveChild",child.id);
+  renderChildren();
+  showToast("Child added successfully.");
+}
+
+function editChild(id){
+  const children=getLocalChildren();
+  const child=children.find(c=>c.id===id);
+  if(!child) return;
+
+  const name=prompt("Child's new name:",child.name);
+  if(!name || !name.trim()) return;
+
+  child.name=name.trim();
+  saveLocalChildren(children);
+  renderChildren();
+  showToast("Child name updated.");
+}
+
+function deleteChildProfile(id){
+  const children=getLocalChildren();
+  const child=children.find(c=>String(c.id)===String(id));
+  if(!child)return;
+
+  if(!window.confirm("Delete "+child.name+" from My Child/My Children?"))return;
+
+  const remaining=children.filter(c=>String(c.id)!==String(id));
+  saveLocalChildren(remaining);
+
+  if(String(localStorage.getItem("iolActiveChild"))===String(id)){
+    if(remaining.length){
+      localStorage.setItem("iolActiveChild",remaining[0].id);
+    }else{
+      localStorage.removeItem("iolActiveChild");
+    }
+  }
+
+  renderChildren();
+  showToast(child.name+" was deleted.");
+}
+
+function viewChild(id){
+  const child=getLocalChildren().find(c=>c.id===id);
+  if(!child) return;
+
+  alert(
+    child.name+
+    "\n\nLevel: "+child.level+
+    "\nLatest score: "+(child.score===null?"Not taken":child.score+"/25")+
+    "\nTests completed: "+child.tests+
+    "\n\nInstitute message:\n"+(child.message||"No messages yet.")
+  );
+}
+
+function updateChildFromTest(level,score){
+  const children=getLocalChildren();
+  if(!children.length) return;
+
+  const activeId=localStorage.getItem("iolActiveChild");
+  const child=children.find(c=>c.id===activeId)||children[0];
+
+  child.level=level;
+  child.score=score;
+  child.tests=Number(child.tests||0)+1;
+  child.message=score===25
+    ?"Excellent work! "+child.name+" passed the "+level+" placement test with 25/25."
+    :child.name+" completed the "+level+" placement test and scored "+score+"/25. Keep practicing!";
+
+  saveLocalChildren(children);
+  localStorage.setItem("iolActiveChild",child.id);
+  renderChildren();
+}
+
+function selectActiveChild(id){
+  localStorage.setItem("iolActiveChild",id);
+  renderChildren();
+}
+
+function refreshChildren(){
+  renderChildren();
+  showToast("Children refreshed.");
+}
+
+function loadStudent(){
+  renderChildren();
+}
+
+function renderChildren(){
+  const children=getLocalChildren();
+  const heading=document.getElementById("childrenHeading");
+  if(heading) heading.textContent=children.length>1?"My Children":"My Child";
+
+  const empty=document.getElementById("childrenEmpty");
+  if(empty) empty.style.display=children.length?"none":"block";
+
+  const grid=document.getElementById("childrenGrid");
+  if(!grid) return;
+
+  if(!children.length){
+    grid.innerHTML="";
+    return;
+  }
+
+  const activeId=localStorage.getItem("iolActiveChild");
+
+  grid.innerHTML=children.map(child=>{
+    const active=child.id===activeId;
+    return `
+      <div class="card childCard ${active?"activeChild":""}">
+        <div class="featureIcon">👤</div>
+        <h3>${escapeHtml(child.name)}</h3>
+        <p><b>Level:</b> ${escapeHtml(child.level||"Not assessed")}</p>
+        <p><b>Latest score:</b> ${child.score===null?"Not taken":child.score+"/25"}</p>
+        <p><b>Tests:</b> ${Number(child.tests||0)}</p>
+        ${active?'<p class="passed">✓ Active child</p>':""}
+        <div class="actions">
+          <button class="btn primary" onclick="selectActiveChild('${child.id}')">Select</button>
+          <button class="btn ghost" onclick="viewChild('${child.id}')">Profile</button>
+          <button class="btn ghost" onclick="editChild('${child.id}')">Rename</button>
+          <button class="btn ghost" onclick="deleteChildProfile('${child.id}')">Remove</button>
+        </div>
+      </div>
+    `;
+  }).join("");
+}
+
+
+const defaultReviews=[["Mariam A.","★★★★★","The placement test is clear and easy to use."],["Omar K.","★★★★★","I like the clean design and level-based questions."],["Sophia R.","★★★★☆","The learning tips are useful and practical."]];let initialReviews=JSON.parse(localStorage.getItem("iolReviews")||"null")||defaultReviews;
 function renderReviews(){document.getElementById("reviewsGrid").innerHTML=initialReviews.map(r=>`<div class="card"><div class="stars">${r[1]}</div><p style="margin:14px 0;color:var(--muted);line-height:1.6">“${escapeHtml(r[2])}”</p><b>${escapeHtml(r[0])}</b></div>`).join("")}
-function addReview(e){e.preventDefault();const n=document.getElementById("reviewName").value.trim(),s=document.getElementById("reviewStars").value,t=document.getElementById("reviewText").value.trim();if(!n||!t)return;initialReviews.unshift([n,"★★★★★".slice(0,Number(s))+"☆☆☆☆☆".slice(0,5-Number(s)),t]);renderReviews();e.target.reset();showToast("Review added.");location.hash="reviews"}
+function addReview(e){e.preventDefault();const n=document.getElementById("reviewName").value.trim(),s=document.getElementById("reviewStars").value,t=document.getElementById("reviewText").value.trim();if(!n||!t)return;initialReviews.unshift([n,"★★★★★".slice(0,Number(s))+"☆☆☆☆☆".slice(0,5-Number(s)),t]);localStorage.setItem("iolReviews",JSON.stringify(initialReviews));renderReviews();e.target.reset();showToast("Review added.");location.hash="reviews"}
 function escapeHtml(s){return s.replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
 function searchSite(q){q=q.toLowerCase().trim();const data=[["Speaking Skills","Course","Speaking, conversation, fluency and communication skills."],["Writing Skills","Course","Writing accuracy, structure and English expression."],["Listening & Reading","Course","Listening comprehension, reading and vocabulary."],["Free Learning Tips","Tips","Daily speaking, context, listening, review and goal-setting tips."],["Placement Tests","Tests","Kids, A1, A2, B1, B2, C1 and C2. 25 questions each."],["Institution AI","AI","Ask about courses, tests, prices, tips and contact."]];const out=document.getElementById("searchResults");if(!q){out.innerHTML="";return}const matches=data.filter(x=>x.join(" ").toLowerCase().includes(q));out.innerHTML=matches.map(x=>`<div class="card"><small style="color:var(--red);font-weight:900">${x[1]}</small><h3>${x[0]}</h3><p>${x[2]}</p></div>`).join("")||`<div class="card"><h3>No results</h3><p>Try another search term.</p></div>`}
 function clearSearch(){document.getElementById("searchInput").value="";searchSite("")}
 function showToast(t){const x=document.getElementById("toast");x.textContent=t;x.classList.add("show");setTimeout(()=>x.classList.remove("show"),2200)}
 function toggleMenu(){const n=document.querySelector(".navlinks");n.style.display=n.style.display==="flex"?"":"flex";n.style.flexDirection="column";n.style.position="absolute";n.style.top="72px";n.style.left="15px";n.style.right="15px";n.style.background="white";n.style.padding="18px";n.style.border="1px solid var(--line)";n.style.borderRadius="16px"}
 renderReviews();selectLevel("Kids");
+
+initAuth();
+
 </script>
 </body>
 </html>
+<script>window.addEventListener('DOMContentLoaded',loadStudent);</script>
